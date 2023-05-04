@@ -115,7 +115,7 @@ extension ViewController {
     
     func assembly() {
         let assembler = Assembler([ServiceAssembly(), ManagerAssembly()])
-        let fooManager = assembler.resolver.resolve(FooManagerProtocol.self)!
+        _ = assembler.resolver.resolve(FooManagerProtocol.self)!
         assembler.apply(assembly: LoggerAssembly())
     }
     

@@ -1,0 +1,101 @@
+@startuml
+
+class ObjectScope {
+- parent: ObjectScopeProtocol
+- storageFactory: InstanceStorage
++ init(storageFactory, parent)
+}
+
+interface ObjectScopeProtocol {
++ makeStorage() -> InstanceStorage
+}
+
+ObjectScopeProtocol <|.. ObjectScope
+
+
+interface InstanceStorage {
+- instance: Any?
++ graphResolutionCompleted()
++ instance(GraphIdentifier) -> Any
++ setInstance(Any, GraphIdentifier)
+}
+
+class GraphStorage {
+
+}
+
+class WeakStorage {
+
+}
+
+class CompositeStorage {
+- components: [InstanceStorage]
+}
+
+InstanceStorage <|.. GraphStorage
+InstanceStorage <|.. WeakStorage
+InstanceStorage <|.. CompositeStorage
+
+
+
+interface Assembly {
++ assemble(Container)
++ loaded(Resolver)
+}
+
+note left of Assembly: 仅提供接口，未实现具体类，由外界实现具体类
+
+class Assembler {
+- container: Container
++ resolver: Resolver
+
++ init(assemblies: [Assembly], parent: Assembly, defaultObjectScope: ObjectScope, behavior: [Behavior])
++ apply(assemblies: [Assembly])
+- run(assemblies: [Assembly]) 
+}
+
+Assembler ..> Assembly : using
+
+interface ServiceEntryProtocol {
++ objectScope: ObjectScopeProtocol
++ storage: InstanceStorage
++ factory: Any
++ initCompleted: Any?
++ serviceType: Any.Type
+}
+
+class ServiceEnty {
++ init(serviceType: Service.Type, argumentsType: Any.Type, factory: Any, objectScope: ObjectScope)
+}
+
+ServiceEntryProtocol <|.. ServiceEnty
+
+
+interface Behavior {
++ container(container: Container, didRegisterType: Type, entry: ServiceEnty, name: String?)
+}
+note top of Behavior: 仅提供接口，未实现具体类，由外界实现具体类传入
+
+
+interface ServiceKeyOption {
++ isEqualTo(another: ServiceKeyOption)->Bool
++ hash(into: inout Hasher)
+}
+note top of ServiceKeyOption: 仅提供接口，未实现具体类，可由外界自定义实现
+
+class ServiceKey {
++ serviceType: Any
++ argumentsType: Any
++ name: String?
++ option: ServiceKeyOption?
+
++ init(serviceType, argumentsType, name, option)
++ hash(into hasher: inout Hasher)
+}
+
+ServiceKey ..> ServiceKeyOption : using
+note left of ServiceKey::"hash(into hasher: inout Hasher)"
+    该方法使用到了自定义的ServiceKeyOption
+end note
+
+@enduml

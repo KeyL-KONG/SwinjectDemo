@@ -17,11 +17,13 @@ extension ViewController {
             Cat(name: "Mew")
         }.initCompleted { _, _ in
             called = true
+            print("init completion")
         }
         print(called)
         
         _ = container.resolve(Animal.self, name: "cb")
         print(called)
+        _ = container.resolve(Animal.self, name: "cb")
     }
     
 }

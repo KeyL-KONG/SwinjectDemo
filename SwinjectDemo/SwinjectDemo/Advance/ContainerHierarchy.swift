@@ -17,7 +17,7 @@ extension ViewController {
         }
         let childContainer = Container(parent: parentContainer)
         let cat = childContainer.resolve(Animal.self)
-        print(cat != nil)
+        print(cat != nil) // output: true
         
         let parentContainer2 = Container()
         let childContainer2 = Container(parent: parentContainer2)
@@ -25,7 +25,7 @@ extension ViewController {
             Cat(name: "cat")
         }
         let cat2 = parentContainer2.resolve(Animal.self)
-        print(cat2 != nil)
+        print(cat2 != nil) // output: false
     }
     
 }

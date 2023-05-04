@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         namedRegistration()
         initializationCallback()
         injectablePatterns()
-        objectScopes()
+        objectScopes2()
         containerHierarchy()
         threadSafety()
     }
