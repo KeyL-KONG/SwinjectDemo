@@ -11,6 +11,7 @@ interface ObjectScopeProtocol {
 }
 
 ObjectScopeProtocol <|.. ObjectScope
+ObjectScope ..> InstanceStorage : using
 
 
 interface InstanceStorage {
@@ -55,6 +56,7 @@ class Assembler {
 }
 
 Assembler ..> Assembly : using
+Assembler "1"-->"1" Container
 
 interface ServiceEntryProtocol {
 + objectScope: ObjectScopeProtocol
@@ -69,7 +71,7 @@ class ServiceEnty {
 }
 
 ServiceEntryProtocol <|.. ServiceEnty
-
+ServiceEnty "1"-->"1" InstanceStorage
 
 interface Behavior {
 + container(container: Container, didRegisterType: Type, entry: ServiceEnty, name: String?)
@@ -97,5 +99,41 @@ ServiceKey ..> ServiceKeyOption : using
 note left of ServiceKey::"hash(into hasher: inout Hasher)"
     该方法使用到了自定义的ServiceKeyOption
 end note
+
+interface Resolver {
++ resolve(serviceType: Service.Type) -> Service?
++ resolve(serviceType: Service.Type, name: String?, argument: Arg1) -> Service?
+}
+
+class Container {
+- services: [ServiceKey: ServiceEntryProtocol]
+- parent: Container?
+- resolutionDepth: Int 
+- defaultObjectScope: ObjectScope
+- synchronized: Bool
+- currentObjectGraph: GraphIdentifier?
+- lock: RecursiveLock
+- behaviors: [Behavior]
+
++ init(parent: Container, defualtObjectScope: ObjectScope, behaviors: [Behavior], registeringClosure: (Container)->Void)
+- init(parent: Container, debugHelper: DebugHelper, defaultObjectScope: ObjectScope, synchronized: Bool)
++ removeAll() // remove all serivces
++ resetObjectScope(objectScope: ObjectScopeProtocol)
++ register(serviceType: Service.Type, factory: (Arguments)->Any, name: String?, option: SerivceKeyOption)
++ synchronize() -> Resolver
++ addBehavior(behavior: Behavior)
++ hasAnyRegistration(serviceType: Service.Type, name: String?)
+}
+
+Container <|.. Resolver
+
+Container "1"-->"n" ServiceKey
+Container "1"-->"n" ServiceEntryProtocol
+Container "1"-->"1" ObjectScope
+Container "1"-->"1" GraphIdentifier
+Container "1"-->"n" Behavior
+
+Container ..> ServiceKeyOption : using
+
 
 @enduml
