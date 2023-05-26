@@ -21,6 +21,7 @@ class ViewController: UIViewController {
         containerHierarchy()
         threadSafety()
         autoResolver()
+        lazyContainer()
     }
 
 
