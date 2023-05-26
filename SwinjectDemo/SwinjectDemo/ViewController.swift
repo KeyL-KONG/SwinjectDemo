@@ -20,6 +20,7 @@ class ViewController: UIViewController {
         objectScopes2()
         containerHierarchy()
         threadSafety()
+        autoResolver()
     }
 
 

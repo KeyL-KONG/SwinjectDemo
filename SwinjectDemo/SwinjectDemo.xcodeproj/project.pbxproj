@@ -22,6 +22,7 @@
 		097984EC29EB86FA001ABF5B /* ContainerHierarchy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097984EB29EB86FA001ABF5B /* ContainerHierarchy.swift */; };
 		097984EE29EB8E35001ABF5B /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097984ED29EB8E35001ABF5B /* Assembly.swift */; };
 		097984F029EB998C001ABF5B /* ThreadSafety.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097984EF29EB998C001ABF5B /* ThreadSafety.swift */; };
+		2B05FE642A208B5A00E20C0C /* PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B05FE632A208B5A00E20C0C /* PropertyWrapper.swift */; };
 		7DE615D6E6B20C25D4487DC1 /* Pods_SwinjectDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE0934631E7E3CA89195D83A /* Pods_SwinjectDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +45,7 @@
 		097984EB29EB86FA001ABF5B /* ContainerHierarchy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerHierarchy.swift; sourceTree = "<group>"; };
 		097984ED29EB8E35001ABF5B /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
 		097984EF29EB998C001ABF5B /* ThreadSafety.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafety.swift; sourceTree = "<group>"; };
+		2B05FE632A208B5A00E20C0C /* PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrapper.swift; sourceTree = "<group>"; };
 		6BFF41A72BC0F82E41F6E169 /* Pods-SwinjectDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwinjectDemo.debug.xcconfig"; path = "Target Support Files/Pods-SwinjectDemo/Pods-SwinjectDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		EE0934631E7E3CA89195D83A /* Pods_SwinjectDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwinjectDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -113,6 +115,7 @@
 				097984EB29EB86FA001ABF5B /* ContainerHierarchy.swift */,
 				097984ED29EB8E35001ABF5B /* Assembly.swift */,
 				097984EF29EB998C001ABF5B /* ThreadSafety.swift */,
+				2B05FE632A208B5A00E20C0C /* PropertyWrapper.swift */,
 			);
 			path = Advance;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				095BA85929DBA70500FABAA8 /* AppDelegate.swift in Sources */,
 				097984F029EB998C001ABF5B /* ThreadSafety.swift in Sources */,
 				095BA87029DBAA2400FABAA8 /* NamedRegistration.swift in Sources */,
+				2B05FE642A208B5A00E20C0C /* PropertyWrapper.swift in Sources */,
 				095BA85B29DBA70500FABAA8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
